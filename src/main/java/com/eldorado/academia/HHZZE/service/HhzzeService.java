@@ -26,7 +26,6 @@ public class HhzzeService {
                 .phoneNumber(hhzzeBaseDto.getPhoneNumber())
                 .frequency(hhzzeBaseDto.getFrequency())
                 .address(hhzzeBaseDto.getAddress())
-                .lgpd(hhzzeBaseDto.getLgpd())
                 .build();
 
         var hhzzeEntitySave = hhzzeRepository.save(hhzzeEntity);

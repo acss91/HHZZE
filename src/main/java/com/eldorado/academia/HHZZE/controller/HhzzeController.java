@@ -1,5 +1,6 @@
 package com.eldorado.academia.HHZZE.controller;
 
+import com.eldorado.academia.HHZZE.domain.model.HhzzeDataEntity;
 import com.eldorado.academia.HHZZE.dto.HhzzeBaseDto;
 import com.eldorado.academia.HHZZE.dto.HhzzeDataDto;
 import com.eldorado.academia.HHZZE.service.HhzzeDataService;
@@ -10,10 +11,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/hhzze-cadastro")
+@RequestMapping("/hhzze")
 @Slf4j
 @RequiredArgsConstructor
 public class HhzzeController{
@@ -21,12 +23,12 @@ public class HhzzeController{
     private final HhzzeService hhzzeService ;
     ;
 
-    @PostMapping
+    @PostMapping("/registration")
     public ResponseEntity<HhzzeBaseDto> saveRegistration(@RequestBody HhzzeBaseDto hhzzeBaseDto) {
         log.info("Registration Base {} ", hhzzeBaseDto);
         return ResponseEntity.ok(hhzzeService.saveRegistration(hhzzeBaseDto));
     }
-    @PostMapping
+    @PostMapping("/data")
     public ResponseEntity<HhzzeDataDto> saveRegistrationWeightandHeight(@RequestBody HhzzeDataDto hhzzeDataDto) {
         log.info("Registration Data Weight and Height {} ", hhzzeDataDto);
         return ResponseEntity.ok(hhzzeDataService.saveWeightandHeight(hhzzeDataDto));
@@ -55,6 +57,15 @@ public class HhzzeController{
 
 
     }
+    @GetMapping("/list")
+    public List<HhzzeDataEntity>listImc(){
+        List<HhzzeDataEntity> list = hhzzeDataService.listImc();
+        return list;
+
+
+
+    }
+
 
 
 

@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 @Service
@@ -22,7 +24,7 @@ public class HhzzeDataService {
 
         var hhzzeDataEntity = HhzzeDataEntity.builder()
                 .id(UUID.randomUUID())
-                .dateMeasure(LocalDateTime.now())
+                .dateMeasure(new Date())
                 .height(hhzzeDataDto.getHeight())
                 .weight(hhzzeDataDto.getWeight()).build();
 
@@ -37,7 +39,7 @@ public class HhzzeDataService {
       Optional <HhzzeDataEntity> ent=hhzzeDataRepository.findById(id);
         var hhzzeDataEntity = HhzzeDataEntity.builder()
                 .id(id)
-                .dateMeasure(LocalDateTime.now())
+                .dateMeasure(new Date())
                 .height(hhzzeNewDataDto.getHeight())
                 .weight(hhzzeNewDataDto.getWeight()).build();
 
@@ -67,6 +69,10 @@ public class HhzzeDataService {
         }
 
 
+public List<HhzzeDataEntity> listImc(){
+    List<HhzzeDataEntity> list=hhzzeDataRepository.findAll();
+   return list;
+}
 
 
 }
